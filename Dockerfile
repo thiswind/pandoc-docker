@@ -6,8 +6,8 @@ MAINTAINER Stephen Steiner <ssteiner@juniper.net>
 RUN apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
-       haskell-platform
        apt-utils \
+       haskell-platform \
        texlive-latex-base \
        texlive-xetex latex-xcolor \
        texlive-math-extra \
