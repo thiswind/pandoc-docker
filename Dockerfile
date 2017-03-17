@@ -20,6 +20,6 @@ RUN apt-get update -y \
     && apt-get clean
 
 # Install cabal and then pandoc + citeproc
-RUN cabal update && cabal install pandoc pandoc-citeproc
+RUN cabal update && cabal install pandoc pandoc-citeproc --force-reinstalls
 
 WORKDIR /build
