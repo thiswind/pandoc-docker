@@ -1,8 +1,15 @@
-# Pandoc Docker Container
+# Pandoc Docker Image for use in Gitlab CI builds
 
-[Docker](https://www.docker.io/) container for the source distribution of [Pandoc](http://johnmacfarlane.net/pandoc), with Latex tools installed.
+Docker image for the source distribution of [Pandoc](http://johnmacfarlane.net/pandoc), with Latex tools installed. This image can be run interactively via the Docker CLI, but was designed to be used to automatically build PDF files from various file types (latex, rst, markdown, etc.)
 
-    docker run jagregory/pandoc
+## To use as an interactive Docker container
+
+`cd` to the dir with your source files, then:
+
+```bash
+$ docker run -v $PWD:/build ntwrkguru/pandoc-gitlab-ci pandoc [OPTIONS] [FILES]
+```
+From `--help`
 
     pandoc [OPTIONS] [FILES]
     Input formats:  docbook, haddock, html, json, latex, markdown, markdown_github,
@@ -15,6 +22,19 @@
                     rst, rtf, s5, slideous, slidy, texinfo, textile
                     [*for pdf output, use latex or beamer and -o FILENAME.pdf
 
-A `/source` directory is created in the container, which can be mapped for use with relative file paths. Pandoc will always be run from the `/source` directory in the container.
+A `/build` directory is created in the container, which can be mapped for use with relative file paths. Pandoc will always be run from the `/build` directory in the container.
 
-    docker run -v `pwd`:/source jagregory/pandoc -f markdown -t html5 myfile.md -o myfile.html
+## To use in .gitlab-ci.yml
+
+The following example will build rst.pdf from docs/test.rst
+
+```yaml
+image: ntwrkguru/pandoc-gitlab-ci
+
+PDF:
+  script:
+    - pandoc -f rst -t pdf docs/test.rst -o rst.pdf
+  artifacts:
+    paths:
+      - "*.pdf"
+```

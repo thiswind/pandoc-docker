@@ -6,12 +6,16 @@ MAINTAINER Stephen Steiner <ssteiner@juniper.net>
 RUN apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
-    texlive-latex-base \
-    texlive-xetex latex-xcolor \
-    texlive-math-extra \
-    texlive-latex-extra \
-    texlive-fonts-extra \
-    texlive-bibtex-extra \
-    fontconfig \
-    lmodern \
-    && cabal update && cabal install pandoc
+       texlive-latex-base \
+       texlive-xetex latex-xcolor \
+       texlive-math-extra \
+       texlive-latex-extra \
+       texlive-fonts-extra \
+       texlive-bibtex-extra \
+       fontconfig \
+       lmodern \
+       libghc-text-icu-dev \
+    && apt-get clean \
+    && cabal update && cabal install pandoc pandoc-citeproc
+
+WORKDIR /build
