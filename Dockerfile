@@ -1,4 +1,4 @@
-FROM haskell:8
+FROM ubuntu:trusty
 
 MAINTAINER Stephen Steiner <ssteiner@juniper.net>
 
@@ -6,6 +6,7 @@ MAINTAINER Stephen Steiner <ssteiner@juniper.net>
 RUN apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
+       haskell-platform
        apt-utils \
        texlive-latex-base \
        texlive-xetex latex-xcolor \
