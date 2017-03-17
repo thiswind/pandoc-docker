@@ -6,6 +6,7 @@ MAINTAINER Stephen Steiner <ssteiner@juniper.net>
 RUN apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
+       apt-utils \
        texlive-latex-base \
        texlive-xetex latex-xcolor \
        texlive-math-extra \
