@@ -15,7 +15,9 @@ RUN apt-get update -y \
        fontconfig \
        lmodern \
        libghc-text-icu-dev \
-    && apt-get clean \
-    && cabal update && cabal install pandoc pandoc-citeproc
+    && apt-get clean
+
+# Install cabal and then pandoc + citeproc
+RUN cabal update && cabal install pandoc pandoc-citeproc
 
 WORKDIR /build
