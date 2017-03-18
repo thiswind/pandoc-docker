@@ -6,7 +6,7 @@ MAINTAINER Stephen Steiner <ntwrkguru@gmail.com>
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
-       texlive-latex-base \
+       texlive-full \
        texlive-xetex latex-xcolor \
        texlive-math-extra \
        texlive-latex-extra \
