@@ -1,13 +1,11 @@
-FROM ubuntu:trusty
+FROM haskell:8
 
-MAINTAINER Stephen Steiner <ssteiner@juniper.net>
+MAINTAINER Stephen Steiner <ntwrkguru@gmail.com>
 
 # Install dependencies
-RUN apt-get update -y \
-    && DEBIAN_FRONTEND=noninteractive \
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+    && apt-get update -y \
     && apt-get install -y --no-install-recommends \
-       apt-utils \
-       haskell-platform \
        texlive-latex-base \
        texlive-xetex latex-xcolor \
        texlive-math-extra \
