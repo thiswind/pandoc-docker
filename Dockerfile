@@ -1,6 +1,6 @@
 FROM haskell:8
 
-MAINTAINER Stephen Steiner <ntwrkguru@gmail.com>
+LABEL  maintainer="Stephen Steiner <ntwrkguru@gmail.com>"
 
 # Install dependencies
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
