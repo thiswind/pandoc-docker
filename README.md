@@ -26,15 +26,49 @@ A `/build` directory is created in the container, which can be mapped for use wi
 
 ## To use in .gitlab-ci.yml
 
-The following example will build rst.pdf from docs/test.rst
+The following example will build test.md from `./`
 
 ```yaml
-image: ntwrkguru/pandoc-gitlab-ci
+image: thiswind/pandoc-docker
 
-PDF:
+DOCX:
   script:
-    - pandoc -f rst -t pdf docs/test.rst -o rst.pdf
+    - pandoc \
+        -f markdown \
+        -t docx \
+        -o test.docx \
+        test.md
   artifacts:
+    paths:
+      - "*.docx"
+```
+
+## to test gitlab-runner locally
+
+```yaml
+image: thiswind/pandoc-docker
+
+DOCX:
+  script:
+    - pandoc \
+        -f markdown \
+        -t docx \
+        -o test.docx \
+        test.md
+  artifacts:
+    paths:
+      - "*.docx"
+  cache: &build_artifact_cache
+    key: build
     paths:
       - "*.pdf"
 ```
+
+then 
+
+```bash
+gitlab-runner exec docker --docker-volumes $(pwd)/cache:/cache DOCX
+```
+
+after all, your artifacts will be saved locally at `./cache/.../cache.zip`
+
