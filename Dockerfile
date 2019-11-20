@@ -21,6 +21,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
     && apt-get clean
 
 # Install cabal and then pandoc + citeproc
+RUN rm -rf ~/.ghc ~/.cabal
 RUN cabal update && cabal install pandoc pandoc-citeproc --force-reinstalls
 
 WORKDIR /build
