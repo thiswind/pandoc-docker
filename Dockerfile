@@ -16,6 +16,8 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
        lmodern \
        libghc-text-icu-dev \
        zip \
+       vim \
+       tree \
     && apt-get clean
 
 # Install cabal and then pandoc + citeproc
