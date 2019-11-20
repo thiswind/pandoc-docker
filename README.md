@@ -72,3 +72,4 @@ gitlab-runner exec docker --docker-volumes $(pwd)/cache:/cache DOCX
 
 after all, your artifacts will be saved locally at `./cache/.../cache.zip`
 
+REPO on DockerHub: [thiswind/pandoc-docker](https://hub.docker.com/r/thiswind/pandoc-docker)
